@@ -5,16 +5,38 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Body from "./components/Body";
 import RestaurantCard from './components/Restaurantcard';
+import About from './components/About';
+import { Navbar } from './components/Navbar'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
 import Header from './components/Header';
-const Applayout=()=>{
+const App=()=>{
+
+ 
   return(
     <React.Fragment>
-<Header/>
-<Body/>
+
+<RouterProvider router={router}/>
     </React.Fragment>
 
   )
 };
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Body/>,
+  },
+  {
+    path: "/about",
+    element: <About/>
+  },
+  {
+    path: "/navbar",
+    element: <Navbar/>
+  }
+]);
 
-export default Applayout
+export default App
