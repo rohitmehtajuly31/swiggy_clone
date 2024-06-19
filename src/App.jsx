@@ -1,15 +1,15 @@
-import { useState } from 'react'
+
 import React from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Body from "./components/Body";
-import RestaurantCard from './components/Restaurantcard';
 import About from './components/About';
-import { Navbar } from './components/Navbar'
+import Contact from './components/Contact';
+import Err from './components/Err';
+import Navbar from './components/Navbar';
+import Restaurantmenu from'./components/Restaurantmenu'
 import {
   createBrowserRouter,
-  RouterProvider,
+  RouterProvider,Outlet
 } from "react-router-dom";
 
 import Header from './components/Header';
@@ -24,19 +24,52 @@ const App=()=>{
 
   )
 };
+const Applayout=()=>{
+  return(
+    <>
+    <Header/>
+    <Outlet/>
+    
+    </>
+  )
+}
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Body/>,
+    element: <Applayout/>,
+    children:[
+      {
+        path: "/",
+        element: <Body/>,
+      },
+      {
+        path: "home",
+        element: <Body/>,
+      },
+      {
+        path: "/restc",
+        element: <Restaurantmenu/>,
+      },
+      {
+        path: "/about",
+        element: <About/>,
+      },
+      {
+        path: "/contact",
+        element: <Contact/>,
+      },
+  
+      
+
+
+      {
+      
+        errorElement:<Err/>
+        }
+
+    ]
   },
-  {
-    path: "/about",
-    element: <About/>
-  },
-  {
-    path: "/navbar",
-    element: <Navbar/>
-  }
+  
 ]);
 
 export default App

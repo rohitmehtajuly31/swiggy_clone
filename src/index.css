@@ -123,3 +123,7 @@
     transform: translateX(100%);
   }
 }
+.restc{
+  width: 100px;
+  margin-right: 10px;
+}
