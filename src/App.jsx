@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         element: <Body/>,
       },
       {
-        path: "/restc",
+        path: "/restc/:resID",
         element: <Restaurantmenu/>,
       },
       {

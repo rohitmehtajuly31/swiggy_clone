@@ -51,8 +51,9 @@ const Body = () => {
         {filterRestaurant ? "Show All" : "Top Rated Button"}
       </button>
       <div className="res-container">
+       
         {filterResObj.map((resObj, index) => (
-         <RestaurantCard key={index} resobj={resObj} />
+         <Link key={resObj.info.id} to={"/restc/"+resObj.info.id}> <RestaurantCard  resobj={resObj} /></Link>
         
         ))}
 

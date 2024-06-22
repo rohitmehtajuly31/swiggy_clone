@@ -34,15 +34,12 @@
 }
 .res-card{
   
-  width: 19%;
+  min-width: 25%;
   margin-right: 5px;
   transition: width 0.3s; /* Add transition for smooth width change */
  
 }
-.res-card:hover {
-  width: calc(16% + 1px); /* Increase width by 1px on hover */
-  border: 1px solid rgb(189, 18, 18);
-}
+
 .res-logo{
 
   width: 100px; 
