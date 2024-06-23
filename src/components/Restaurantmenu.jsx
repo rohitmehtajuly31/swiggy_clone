@@ -3,28 +3,14 @@ import ReactShimmer from "./ReactShimmer";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { MENU_API  } from "../utils/constants";
+import useRestmenu from "../utils/useRestmenu";
+
+
 
 
 const Restaurantmenu = () => {
-  const [Restmenu, setRestmenu] = useState(null); // Initialize as null for better handling
-  const {resID}=useParams()
-  console.log(resID)
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(MENU_API+resID);
-      const data = await response.json();
-      console.log("Fetched data:", data);
-      setRestmenu(data);
-    } catch (error) {
-      console.error("Error fetching restaurant data:", error);
-      // Handle errors, maybe setRestmenu(null) or show an error message
-    }
-  };
+  const {resID}=useParams();
+  const Restmenu=useRestmenu(resID)
 
 
   if (Restmenu === null) return <ReactShimmer />; // Show shimmer or loading state while fetching
