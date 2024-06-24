@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ReactShimmer from "./ReactShimmer";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { MENU_API  } from "../utils/constants";
 import useRestmenu from "../utils/useRestmenu";
 
 

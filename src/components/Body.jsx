@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./Restaurantcard";
 import ReactShimmer from "./ReactShimmer";
-import resobjj from "../utils/mockdata";
 import Restaurantmenu from "./Restaurantmenu";
 import { Link } from "react-router-dom";
+import useonlinestatus from "../utils/useonlinestatus";
 
 const Body = () => {
+  const online = useonlinestatus();
   const [ResData, setResData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -17,29 +18,40 @@ const Body = () => {
 
   const fetchData = async () => {
     try {
-      const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.73390&lng=76.78890&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-      const json = await data.json();
+      const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.73390&lng=76.78890&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const json = await response.json();
       console.log("Response data:", json);
       setResData(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
+      // Handle fetch error here, e.g., show a message to the user
+      setLoading(false); // Set loading to false to stop the loading indicator
     }
   };
+
+  if (!online) {
+    return <h1>No internet connection.</h1>;
+  }
+
+  if (loading) {
+    return <ReactShimmer />;
+  }
 
   const handleFilterRestaurant = () => {
     setFilterRestaurant(!filterRestaurant);
   };
 
-  const filterResObj = filterRestaurant
+  const filteredResObj = filterRestaurant
     ? ResData.filter((res) => res.info.avgRating > 4)
     : ResData.filter((obj) =>
         obj.info.name.toLowerCase().includes(search.toLowerCase())
       );
 
-  return ResData.length === 0 ? (
-    <ReactShimmer />
-  ) : (
+  return (
     <div className="body">
       <input
         type="text"
@@ -48,15 +60,14 @@ const Body = () => {
         placeholder="Search..."
       />
       <button className="filter-btn" onClick={handleFilterRestaurant}>
-        {filterRestaurant ? "Show All" : "Top Rated Button"}
+        {filterRestaurant ? "Show All" : "Top Rated"}
       </button>
       <div className="res-container">
-       
-        {filterResObj.map((resObj, index) => (
-         <Link key={resObj.info.id} to={"/restc/"+resObj.info.id}> <RestaurantCard  resobj={resObj} /></Link>
-        
+        {filteredResObj.map((resObj, index) => (
+          <Link key={resObj.info.id} to={`/restc/${resObj.info.id}`}>
+            <RestaurantCard resobj={resObj} />
+          </Link>
         ))}
-
       </div>
     </div>
   );
