@@ -53,16 +53,18 @@ const Body = () => {
 
   return (
     <div className="body">
-      <input
+      <div className="flex justify-between w-2/4 mx-auto py-8 " >
+      <input className="border-2 border-rose-600 focus:border-pink-500 rounded-lg px-4 py-2 focus:outline-none"
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search..."
       />
-      <button className="filter-btn" onClick={handleFilterRestaurant}>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-5" onClick={handleFilterRestaurant}>
         {filterRestaurant ? "Show All" : "Top Rated"}
       </button>
-      <div className="res-container">
+      </div>
+      <div className="flex flex-wrap">
         {filteredResObj.map((resObj, index) => (
           <Link key={resObj.info.id} to={`/restc/${resObj.info.id}`}>
             <RestaurantCard resobj={resObj} />

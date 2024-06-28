@@ -13,21 +13,23 @@ const Header = () => {
   };
 
   return (
-    <div className="header">
-      <div className="logo">
-       <Link to="/"><img src={LOGO_URL} alt="" /></Link> 
+    <div className="flex justify-between">
+      <div className="">
+       <Link to="/"><img class="w-16" src={LOGO_URL} alt=""  /></Link> 
       </div>
       <div className="nav_item">
-        <ul>
-        <li>Online Status {online?"✅": " 🛑"} </li>
+        <ul className="flex p-5  ">
+        <li className="mr-4">Online Status {online?"✅": " 🛑"} </li>
         
-          <li> <Link to="/home"> Home</Link> </li>
-          <li> <Link to="/about"> About</Link> </li>
-          <li> <Link to="/contact"> contact</Link> </li>
-         
-          <li>Cart</li>
+          <li className="mr-4"> <Link to="/home"> Home</Link> </li>
+          <li className="mr-4"> <Link to="/about"> About</Link> </li>
+          <li className="mr-4"> <Link to="/contact"> contact</Link> </li>
+          <li className="mr-4"> <Link to="/groccery"> Groccery</Link> </li>
+          <li className="mr-4">Cart</li>
+          <button onClick={toggleLogin}>{btn ? "Login" : "Logout"}</button>
+          
         </ul>
-        <button onClick={toggleLogin}>{btn ? "Login" : "Logout"}</button>
+        
       </div>
     </div>
   );
