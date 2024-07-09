@@ -6,11 +6,17 @@ import useonlinestatus from "../utils/useonlinestatus";
 const Header = () => {
   const online=useonlinestatus()
   const [btn, setBtn] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
+
   console.log("hello")
 
   const toggleLogin = () => {
     setBtn(!btn);
   };
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
 
   return (
     <div className="flex justify-between">
@@ -19,7 +25,12 @@ const Header = () => {
       </div>
       <div className="nav_item">
         <ul className="flex p-5  ">
+          
+      <button onClick={toggleDarkMode}>
+          {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+        </button>
         <li className="mr-4">Online Status {online?"✅": " 🛑"} </li>
+    
         
           <li className="mr-4"> <Link to="/home"> Home</Link> </li>
           <li className="mr-4"> <Link to="/about"> About</Link> </li>

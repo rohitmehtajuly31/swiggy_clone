@@ -6,7 +6,11 @@ import { Link } from "react-router-dom";
 import useonlinestatus from "../utils/useonlinestatus";
 
 const Body = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+
   const online = useonlinestatus();
+  
   const [ResData, setResData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -15,6 +19,7 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
 
   const fetchData = async () => {
     try {
@@ -52,7 +57,7 @@ const Body = () => {
       );
 
   return (
-    <div className="body">
+    <div className={darkMode ? "dark" : "light"}>
       <div className="flex justify-between w-2/4 mx-auto py-8 " >
       <input className="border-2 border-rose-600 focus:border-pink-500 rounded-lg px-4 py-2 focus:outline-none"
         type="text"
@@ -63,6 +68,8 @@ const Body = () => {
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-5" onClick={handleFilterRestaurant}>
         {filterRestaurant ? "Show All" : "Top Rated"}
       </button>
+
+     
       </div>
       <div className="flex flex-wrap">
         {filteredResObj.map((resObj, index) => (

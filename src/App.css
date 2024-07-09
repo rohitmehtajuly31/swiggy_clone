@@ -40,3 +40,19 @@
 .read-the-docs {
   color: #888;
 }
+
+.light {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+}
+
+/* Dark mode styles */
+.dark {
+  --bg-color: #333333;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
