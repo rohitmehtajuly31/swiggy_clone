@@ -64,7 +64,7 @@ const Body = () => {
       <h1>merge confilict1 ------ </h1>
       <h1>new 5 pm again</h1>
       <p>the new and again</p>
-     
+
       <input className="border-2 border-rose-600 focus:border-pink-500 rounded-lg px-4 py-2 focus:outline-none"
         type="text"
         value={search}
