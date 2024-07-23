@@ -62,7 +62,7 @@ const Body = () => {
 
  <h1>hello merge this is main branch</h1>
       <h1>merge confilict1 ------ </h1>
-      <h1>dsfdsfsdfs</h1>
+   
 
       <input className="border-2 border-rose-600 focus:border-pink-500 rounded-lg px-4 py-2 focus:outline-none"
         type="text"
