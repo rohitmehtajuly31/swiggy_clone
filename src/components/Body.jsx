@@ -59,7 +59,7 @@ const Body = () => {
   return (
     <div className={darkMode ? "dark" : "light"}>
       <div className="flex justify-between w-2/4 mx-auto py-8 " >
-    <div><h1>hello merge this is main branch</h1></div>
+ <h1>hello merge this is main branch</h1>
       <input className="border-2 border-rose-600 focus:border-pink-500 rounded-lg px-4 py-2 focus:outline-none"
         type="text"
         value={search}
