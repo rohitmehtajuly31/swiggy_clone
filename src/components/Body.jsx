@@ -39,7 +39,7 @@ const Body = () => {
   };
 
   if (!online) {
-    return <h1>No internet connection.</h1>;
+    return <h1>No internet connection hello changes.</h1>;
   }
 
   if (loading) {
