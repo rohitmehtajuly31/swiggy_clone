@@ -12,6 +12,10 @@ const About = () => {
     <div>
       <h1>About</h1>
       <User user={user}/>
+      <h1>branch 2 is generated</h1>
+      <h1>anotehr change
+  
+      </h1>
     </div>
 
   )
