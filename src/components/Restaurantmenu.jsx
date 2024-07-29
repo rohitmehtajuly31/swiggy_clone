@@ -9,24 +9,22 @@ const Restaurantmenu = () => {
   const Restmenu = useRestmenu(resID);
 
   const [btnOn, setBtnOn] = useState(false);
- 
+  const [openAccordionIndex, setOpenAccordionIndex] = useState(null); // State to track the open accordion index
 
   const btnHandler = () => {
     setBtnOn(!btnOn); // Toggle btnOn state between true and false
   };
 
+  const toggleAccordion = (index) => {
+    setOpenAccordionIndex(openAccordionIndex === index ? null : index);
+  };
+
   if (Restmenu === null) return <ReactShimmer />; // Show shimmer or loading state while fetching
 
   const name = Restmenu.data.cards[4]?.groupedCard.cardGroupMap.REGULAR.cards[1]?.card.card.itemCards || [];
-  const namez = Restmenu.data.cards[4]?.groupedCard.cardGroupMap.REGULAR.cards.filter((c)=>c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
-  console.log(namez,"fff")
+  const namez = Restmenu.data.cards[4]?.groupedCard.cardGroupMap.REGULAR.cards.filter((c) => c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+
   const { city } = Restmenu.data.cards[2]?.card.card.info || {};
-  // const [visibleItems, setVisibleItems] = useState(namez.map(() => false));
-  // const btnHandler2 = (index) => {
-  //   const newVisibleItems = [...visibleItems];
-  //   newVisibleItems[index] = !newVisibleItems[index];
-  //   setVisibleItems(newVisibleItems);
-  // };
 
   return (
     <div className="flex flex-col items-center">
@@ -54,40 +52,15 @@ const Restaurantmenu = () => {
         <div className="mt-4 text-gray-600">Click the button above to show dish names.</div>
       )}
 
-      {/* categores */}
-      {namez.map((item,index)=>(
-        <Categories key={index} items={item}/>
-
+      {/* Categories */}
+      {namez.map((item, index) => (
+        <Categories
+          key={index}
+          items={item}
+          isOpen={openAccordionIndex === index  } // Determine if this accordion is open
+          onToggle={() => toggleAccordion(index)} // Handle toggle action
+        />
       ))}
-
-{/* 
-{Restmenu.map((item, index) => (
-        <div key={index}>
-          {/* Button to toggle visibility */}
-          {/* <button onClick={() => btnHandler(index)}>
-            {visibleItems[index] ? 'Hide ' : 'Show '} {item.name}
-          </button>
-          {/* Render the item only if it should be visible */}
-          {/* {visibleItems[index] && (
-            <div>
-              {/* Render item details here */}
-              {/* <p>{item.name} - {item.description}</p> */}
-              {/* Add more details as needed */}
-            {/* </div> */}
-          {/* )}   */}
-
-      {/* Example of rendering categories */}
-      {/* {namez.map((category, idx) => (
-        <div key={idx}>
-          <h2>{category.title}</h2>
-          <ul>
-            {category.itemCards.map((item, index) => (
-              <li key={index}>{item.card.info.name}</li>
-            ))}
-          </ul>
-        </div>
-      ))} */}
-
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { CDN_URL,MENU_API  } from "../utils/constants";
 
 const RestaurantCard=(props)=>{
+
   console.log(props)
   const{name,avgRating,cuisines,locality}=props.resobj.info
 
