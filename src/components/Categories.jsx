@@ -12,6 +12,7 @@ const Categories = ({ items, isOpen, onToggle }) => {
     const truncatedWords = words.slice(0, maxWords); // Slice the first `maxWords` words
     return truncatedWords.join(' '); // Join back into a string
   };
+  
 
   return (
     <div className="relative mb-3 w-4/6 rounded border-2 border-black-600">

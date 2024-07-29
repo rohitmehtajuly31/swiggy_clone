@@ -15,9 +15,9 @@ const Restaurantmenu = () => {
     setBtnOn(!btnOn); // Toggle btnOn state between true and false
   };
 
-  const toggleAccordion = (index) => {
-    setOpenAccordionIndex(openAccordionIndex === index ? null : index);
-  };
+  // const toggleAccordion = (index) => {
+  //   setOpenAccordionIndex(openAccordionIndex === index ? null : index);
+  // };
 
   if (Restmenu === null) return <ReactShimmer />; // Show shimmer or loading state while fetching
 
@@ -57,7 +57,7 @@ const Restaurantmenu = () => {
         <Categories
           key={index}
           items={item}
-          isOpen={openAccordionIndex === index  } // Determine if this accordion is open
+          isOpen={index === openAccordionIndex ? true : false  } // Determine if this accordion is open
           onToggle={() => toggleAccordion(index)} // Handle toggle action
         />
       ))}
