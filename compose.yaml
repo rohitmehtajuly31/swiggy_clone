@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .  # Path to the directory containing the Dockerfile
+      dockerfile: Dockerfile  # Explicitly specify the Dockerfile if named differently
+    container_name: node_app_container  # Name of the container
+    ports:
+      - "5173:5173"  # Map port 5174 on the host to port 5174 in the container
+    volumes:
+      - C:/Users/Admin/swiggy_clone:/app/n  # Mount the local directory to /app in the container

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import RestaurantCard from "./Restaurantcard";
 import ReactShimmer from "./ReactShimmer";
 import Restaurantmenu from "./Restaurantmenu";
 import { Link } from "react-router-dom";
 import useonlinestatus from "../utils/useonlinestatus";
+import Context from "./Context";
+
 
 const Body = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -19,8 +21,7 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-
+const{setusername,logged}=useContext(Context)
   const fetchData = async () => {
     try {
       const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.73390&lng=76.78890&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
@@ -60,10 +61,10 @@ const Body = () => {
     <div className={darkMode ? "dark" : "light"}>
       <div className="flex justify-between w-2/4 mx-auto py-8 " >
 
- <h1>hello merge this is main branch</h1>
-      <h1>merge confilict1 ------ </h1>
-      <h1>new 5 pm again</h1>
-      <p>the new and again</p>
+      <Context.Consumer>
+   {({logged})=><h1>{logged}</h1>}
+       
+      </Context.Consumer>
 
       <input className="border-2 border-rose-600 focus:border-pink-500 rounded-lg px-4 py-2 focus:outline-none"
         type="text"
@@ -74,6 +75,8 @@ const Body = () => {
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-5" onClick={handleFilterRestaurant}>
         {filterRestaurant ? "Show All" : "Top Rated"}
       </button>
+<input className="border-2 border-rose-600 focus:border-pink-500 rounded-lg px-4 py-2 focus:outline-none" type="text" value={logged} onChange={(e)=>setusername(e.target.value)} />
+
 
      
       </div>

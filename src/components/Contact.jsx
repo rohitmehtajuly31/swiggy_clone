@@ -3,7 +3,7 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <div>contact</div>
+    <div>contact.doc</div>
   )
 }
 export default Contact;

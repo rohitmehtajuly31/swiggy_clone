@@ -15,9 +15,9 @@ const Restaurantmenu = () => {
     setBtnOn(!btnOn); // Toggle btnOn state between true and false
   };
 
-  // const toggleAccordion = (index) => {
-  //   setOpenAccordionIndex(openAccordionIndex === index ? null : index);
-  // };
+  const toggleAccordion = (index) => {
+    setOpenAccordionIndex(openAccordionIndex === index ? null : index);
+  };
 
   if (Restmenu === null) return <ReactShimmer />; // Show shimmer or loading state while fetching
 

@@ -1,9 +1,18 @@
 import React from 'react';
 import { CDN_URL } from "../utils/constants";
 
+import { useDispatch } from 'react-redux';
+import cartSlice, { addItem } from './cartSlice';
+
 const Categories = ({ items, isOpen, onToggle }) => {
   const catg_items = items.card.card.itemCards || [];
   const catg_names = (catg_items[0] && catg_items[0].card.info.name) || 'Unnamed Category';
+
+const dispatch=useDispatch()
+const handleitems=(item)=>{
+  dispatch(addItem(item))
+}
+
 
   // Helper function to truncate text
   const truncateText = (text, maxWords) => {
@@ -42,11 +51,16 @@ const Categories = ({ items, isOpen, onToggle }) => {
                   <h2 className='font-semibold'>{info?.name || 'Unnamed Item'}</h2>
                   <h5 className='text-sm'>{truncateText(info?.description, 20) || 'No description available'}</h5>
                 </div>
-                <img
-                  className='max-w-40 p-4 rounded-md'
-                  src={CDN_URL + (info?.imageId || 'default-image-id.jpg')}
-                  alt={info?.name || 'Resource Image'}
-                />
+                <div class="relative inline-block">
+  <img
+    class="max-w-40 p-1 rounded-xl"
+    src={CDN_URL + (info?.imageId || 'default-image-id.jpg')}
+    alt={info?.name || 'Resource Image'}
+  />
+  <button onClick={()=>handleitems(item)} class="absolute bottom-1 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-400">
+    Add +
+  </button>
+</div>
               </div>
             </div>
           );
